@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/MenuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greyColor"
+        android:orientation="vertical"
+        android:elevation="10dp"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        >
+
+
+        <EditText
+            android:id="@+id/textInput"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:hint="Vyhledejte slovíčko"
+            android:textColorHint="#DCDCDC"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:textColor="@color/mainTextColor"
+            android:textSize="17sp"
+            android:backgroundTint="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/delete"
+                android:textSize="17sp" />
+            <Button
+                android:id="@+id/czjpButton"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="JP"
+                android:textSize="17sp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/mainTextColor"
+                >
+            </Button>
+            <ImageButton
+                android:id="@+id/filterButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/filter"
+                android:textSize="17sp"
+                />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/filterBoxContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greyColor"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:id="@+id/filterBoxContainerTypes"
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        android:background="@color/greyColor"
+        android:orientation="vertical"
+        >
+
+        <CheckBox
+            android:id="@+id/checkBoxSlovicka"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Slovíčka"
+            android:buttonTint="@color/colorPrimary"
+            android:textColor="@color/blackColor"
+            android:checked="true"
+            android:onClick="showData"
+            />
+
+        <CheckBox
+            android:id="@+id/checkBoxTechniky"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Techniky"
+            android:buttonTint="@color/colorPrimary"
+            android:textColor="@color/blackColor"
+            android:checked="true"
+            android:onClick="showData"
+            />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:layout_margin="5dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Typy technik:"
+            android:textSize="17sp"
+            android:textColor="@color/blackColor"
+            android:layout_marginHorizontal="5dp"
+            ></TextView>
+        <ImageButton
+            android:id="@+id/showTechniquesTypesButton"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textColor="@color/whiteColor"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/arrow_down"
+            android:layout_marginHorizontal="5dp"
+            >
+
+
+
+        </ImageButton>
+    </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/filterBoxContainerForTechniques"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:fadeScrollbars="false"
+            android:scrollbarSize="10dp"
+            android:scrollbarThumbVertical="@color/colorPrimary"
+            >
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/greyColor"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/techniqueTypesSelectAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="Vybrat vše"
+                    android:checked="true"
+                    android:onClick="showData"/>
+                <CheckBox
+                    android:id="@+id/techniqueTypes1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="@string/techniqueTypes1"
+                    android:checked="true"
+                    android:onClick="showData"
+                    />
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="fusegi  - sebeobrana"
+                    android:checked="true"
+                    android:onClick="showData"
+                    />
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="geri waza - techniky kopů"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes4"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="kansecu waza - techniky páčení"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes5"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="kata - sestavy"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="kuzuchi waza - vychylování"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes7"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="nage waza - techniky hodů, porazů"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes8"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="osae komi waza - techniky držení"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes9"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="shime waza - techniky škrcení"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes10"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="shin tai - chůze"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes11"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="shizei - postoje"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes12"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="tai iku - gymnastika"
+                    android:checked="true"
+                    android:onClick="showData"/>
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes13"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="uke waza - techniky krytů"
+                    android:checked="true"
+                    android:onClick="showData"
+                    />
+
+                <CheckBox
+                    android:id="@+id/techniqueTypes14"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="ukemi waza - techniky pádů"
+                    android:checked="true"
+                    android:onClick="showData"
+                    />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/greyColor"
+        android:fadeScrollbars="false"
+        android:scrollbarSize="10dp"
+        android:scrollbarThumbVertical="@color/colorPrimary"
+        ></ListView>
+</LinearLayout>
