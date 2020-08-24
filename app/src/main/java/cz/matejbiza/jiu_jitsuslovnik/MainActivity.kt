@@ -1,21 +1,21 @@
 package cz.matejbiza.jiu_jitsuslovnik
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Display
 import android.view.View
 import android.widget.*
-import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     var helper = DataBaseHandler(this)
     var listOfMainCheckBoxes = mutableListOf<CheckBox>()
     var listOfCheckboxesTypesTechniques = mutableListOf<CheckBox>()
+    var listOfReturnedData = mutableListOf<Model>()
     // init for checkboxes to work everywhere
 
 
@@ -24,17 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //val clubs = listOf("mae", "geri", "cuki")
-        //users_list.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, clubs)
-        //helper.insertData(1, "mae", "dopredu", "slovicko", "aa")
-        //val clubs = helper.returnData()
-        //users_list.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, clubs)
 
 
-        showData()
-       /* listView.setOnItemClickListener{parent:AdapterView<*>, view:View, position:Int, id:Long ->
-            Toast.makeText(this@MainActivity, "Hey", Toast.LENGTH_LONG).show()
-        }*/
+
+
 
         textInput.addTextChangedListener (object: TextWatcher {
             override fun afterTextChanged(s: Editable) {}
@@ -104,22 +97,44 @@ class MainActivity : AppCompatActivity() {
             findViewById<CheckBox>(R.id.techniqueTypes13),
             findViewById<CheckBox>(R.id.techniqueTypes14)
         )
+
+        // shows data
+        showData()
+        // will open window with word details
+        listView.setOnItemClickListener{parent:AdapterView<*>, view:View, position:Int, id:Long ->
+            val IdOfClickedWord = listOfReturnedData[position].ID
+            //Toast.makeText(this@MainActivity, IdOfClickedWord.toString(), Toast.LENGTH_LONG).show()
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("wordID",IdOfClickedWord.toString())
+            startActivity(intent)
+        }
     }
     fun showData() {
         var editTextInput = findViewById<EditText>(R.id.textInput)
         val czjpButton = findViewById<Button>(R.id.czjpButton)
         val searchLanguage = czjpButton.text.toString()
         val searchVal:String = editTextInput.text.toString()
+        // gets chechbox data
+        var checkBoxData:String = ""
+        if (listOfMainCheckBoxes[0].isChecked ) {
+            checkBoxData = checkBoxData.plus("'slovíčko',")
+        }
+        if (listOfMainCheckBoxes[1].isChecked) {
+            for (a in listOfCheckboxesTypesTechniques) {
+                if (a.isChecked) {
+                    checkBoxData = checkBoxData.plus("'"+a.text.toString()+"',")
+                }
+            }
+        }
+        checkBoxData = checkBoxData.dropLast(1)
+        // shows data
         var listView = findViewById<ListView>(R.id.listView)
-        var list = helper.returnData(searchVal, searchLanguage)
-
-        listView.adapter = MyAdapter(this, R.layout.row, list)
+        listOfReturnedData = helper.returnData(searchVal, searchLanguage,checkBoxData)
+        listView.adapter = MyAdapter(this, R.layout.row, listOfReturnedData)
     }
 
     fun showData(view: View) {
-        /*for (a in listOfMainCheckBoxes) {
-            Toast.makeText(this@MainActivity, a.isChecked.toString(), Toast.LENGTH_LONG).show()
-        }*/
+
 
         showData()
     }

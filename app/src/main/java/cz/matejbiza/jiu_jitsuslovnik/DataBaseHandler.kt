@@ -2,10 +2,8 @@ package cz.matejbiza.jiu_jitsuslovnik
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 
 val DATABASE_NAME = "slovnik"
 val TABLE_NAME = "slovicka"
@@ -373,24 +371,25 @@ class DataBaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         cv.put(COL_content, WORD_content)
         db.insert(TABLE_NAME, null, cv)
     }
-    fun returnData(searchVal: String = "", searchLanguage: String = ""): MutableList<Model> {
+    fun returnData(searchVal: String = "", searchLanguage: String = "", checkBoxData: String): MutableList<Model> {
         val db = this.writableDatabase
         // to choose search language
         var languageSearch = COL_japanese
         if (searchLanguage == "CZ") {
             languageSearch = COL_czech
         }
-        val sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + languageSearch + " LIKE '"+'%'+searchVal+'%'+"' ORDER BY " + languageSearch + " ASC"
+        val sql =
+            "SELECT * FROM " + TABLE_NAME + " WHERE (" + languageSearch + " LIKE '%" + searchVal + "%' OR  "+ COL_type + " LIKE '%" + searchVal + "%') AND " + COL_type + " IN (" + checkBoxData + ") ORDER BY " + languageSearch + " ASC"
         val cursor = db.rawQuery(sql, null)
         var rv = mutableListOf<Model>()
         // what to show first if czech or japanese
         if (searchLanguage == "JP") {
             while (cursor.moveToNext()) {
-                rv.add(Model(cursor.getString(1), cursor.getString(2), cursor.getString(3)))
+                rv.add(Model(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(0)))
             }
         } else {
             while (cursor.moveToNext()) {
-                rv.add(Model(cursor.getString(2), cursor.getString(1), cursor.getString(3)))
+                rv.add(Model(cursor.getString(2), cursor.getString(1), cursor.getString(3), cursor.getInt(0)))
             }
         }
         cursor.close()

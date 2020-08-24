@@ -25,8 +25,9 @@
 
         <EditText
             android:id="@+id/textInput"
-            android:layout_width="230dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="50dp"
             android:hint="Vyhledejte slovíčko"
             android:textColorHint="#DCDCDC"
             android:layout_marginLeft="10dp"
@@ -39,33 +40,54 @@
             android:textStyle="bold"
             />
 
-            <ImageButton
-                android:id="@+id/deleteButton"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginLeft="2dp"
-                android:background="@drawable/delete"
-                android:textSize="17sp" />
-            <Button
-                android:id="@+id/czjpButton"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:text="JP"
-                android:textSize="17sp"
-                android:background="@android:color/transparent"
-                android:textColor="@color/mainTextColor"
-                >
-            </Button>
-            <ImageButton
-                android:id="@+id/filterButton"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginLeft="2dp"
-                android:background="@drawable/filter"
-                android:textSize="17sp"
-                />
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/delete" />
+        <Button
+            android:id="@+id/czjpButton"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="JP"
+            android:layout_marginLeft="5dp"
+            android:textSize="17sp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/mainTextColor"
+            >
+        </Button>
+
+
+
+
+        <ImageButton
+            android:id="@+id/filterButton"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/filter" />
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/menu" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/filterBoxContainer"
