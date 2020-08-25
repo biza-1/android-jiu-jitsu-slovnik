@@ -385,16 +385,41 @@ class DataBaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         // what to show first if czech or japanese
         if (searchLanguage == "JP") {
             while (cursor.moveToNext()) {
-                rv.add(Model(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(0)))
+                rv.add(Model(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(0),cursor.getString(4)))
             }
         } else {
             while (cursor.moveToNext()) {
-                rv.add(Model(cursor.getString(2), cursor.getString(1), cursor.getString(3), cursor.getInt(0)))
+                rv.add(Model(cursor.getString(2), cursor.getString(1), cursor.getString(3), cursor.getInt(0),cursor.getString(4)))
             }
         }
         cursor.close()
         return rv
+    }
+    fun returnSingleData(wordID: String): MutableList<Model> {
+        val db = this.writableDatabase
+        val sql =
+            "SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + " = " + wordID + ""
+        val cursor = db.rawQuery(sql, null)
+        var rv = mutableListOf<Model>()
+        while (cursor.moveToNext()) {
+            rv.add(Model(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(0),cursor.getString(4)))
+        }
+        return rv
+    }
+    fun getSimilarWords(searchVal: String = ""): MutableList<Model> {
+        val db = this.writableDatabase
+        // edited to do any words or techniques that contain parts of word
+        var searchValEdited = searchVal.replace(" ", "%' OR " + COL_japanese + " LIKE '%")
+        searchValEdited = COL_japanese + " LIKE '%" + searchValEdited + "%'"
+        val sql =
+            "SELECT * FROM " + TABLE_NAME + " WHERE (" + searchValEdited + ") AND " + COL_japanese + " != '" + searchVal + "' "
+        val cursor = db.rawQuery(sql, null)
+        var rv = mutableListOf<Model>()
 
-
+        while (cursor.moveToNext()) {
+            rv.add(Model(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(0),cursor.getString(4)))
+        }
+        cursor.close()
+        return rv
     }
 }

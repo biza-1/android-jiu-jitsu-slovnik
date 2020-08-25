@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginHorizontal="15dp"
 
         >
         <TextView
@@ -69,6 +69,7 @@
             android:textColor="#000000"
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             >
         </TextView>
         <TextView
@@ -77,8 +78,9 @@
             android:layout_height="wrap_content"
             android:text="type text"
             android:textColor="#000000"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:gravity="right"
+            android:layout_marginTop="15dp"
             >
         </TextView>
         <TextView
@@ -87,9 +89,15 @@
             android:layout_height="wrap_content"
             android:text="description"
             android:textColor="#000000"
-            android:textSize="17sp"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
             >
         </TextView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/darker_gray"/>
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
@@ -101,16 +109,10 @@
             >
         </TextView>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="10dp"
-        android:background="@android:color/darker_gray"/>
 
     <ListView
         android:id="@+id/listView"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/greyColor"
