@@ -31,10 +31,10 @@ class DetailActivity: AppCompatActivity() {
         descripionWord =  descripionWord.replace("</p>", "")
         textView4.text = descripionWord
 
+        // shows similar words
         var listView = findViewById<ListView>(R.id.listView)
         listOfReturnedData = helper.getSimilarWords(listOfReturnedData[0].mainText)
         listView.adapter = MyAdapter(this, R.layout.row, listOfReturnedData)
-
 
         listView.setOnItemClickListener{ parent: AdapterView<*>, view: View, position:Int, id:Long ->
             val IdOfClickedWord = listOfReturnedData[position].ID
@@ -42,6 +42,11 @@ class DetailActivity: AppCompatActivity() {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("wordID",IdOfClickedWord.toString())
             startActivity(intent)
+        }
+        // returns to previous activity
+        var backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener() {
+            finish()
         }
 
     }
