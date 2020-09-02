@@ -31,11 +31,12 @@ class DetailActivity: AppCompatActivity() {
         descripionWord =  descripionWord.replace("</p>", "")
         textView4.text = descripionWord
 
-        // shows similar words
+        // gets listview
         var listView = findViewById<ListView>(R.id.listView)
         listOfReturnedData = helper.getSimilarWords(listOfReturnedData[0].mainText)
         listView.adapter = MyAdapter(this, R.layout.row, listOfReturnedData)
-
+        
+        // shows similar words
         listView.setOnItemClickListener{ parent: AdapterView<*>, view: View, position:Int, id:Long ->
             val IdOfClickedWord = listOfReturnedData[position].ID
             //Toast.makeText(this@MainActivity, IdOfClickedWord.toString(), Toast.LENGTH_LONG).show()
