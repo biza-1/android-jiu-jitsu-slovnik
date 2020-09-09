@@ -95,6 +95,8 @@
         android:layout_height="wrap_content"
         android:background="@color/greyColor"
         android:orientation="vertical"
+
+        android:visibility="gone"
         >
     <LinearLayout
         android:id="@+id/filterBoxContainerTypes"
@@ -163,6 +165,7 @@
             android:layout_height="160dp"
             android:fadeScrollbars="false"
             android:scrollbarSize="10dp"
+            android:visibility="gone"
             android:scrollbarThumbVertical="@color/colorPrimary"
             >
 
@@ -181,7 +184,7 @@
                     android:buttonTint="@color/colorPrimary"
                     android:text="Vybrat vše"
                     android:checked="true"
-                    android:onClick="showData"/>
+                    android:onClick="checkUncheckData"/>
                 <CheckBox
                     android:id="@+id/techniqueTypes1"
                     android:layout_width="match_parent"

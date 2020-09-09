@@ -132,11 +132,35 @@ class MainActivity : AppCompatActivity() {
         listOfReturnedData = helper.returnData(searchVal, searchLanguage,checkBoxData)
         listView.adapter = MyAdapter(this, R.layout.row, listOfReturnedData)
     }
-
+    // for type checkboxes. When all are checked > Checked all is checked else Checked all is unchecked
     fun showData(view: View) {
-
-
+        var checkedAmmount = 0
+        for (a in listOfCheckboxesTypesTechniques) {
+            if (a.isChecked) {
+                checkedAmmount++
+            }
+        }
+        if (checkedAmmount == listOfCheckboxesTypesTechniques.count()) {
+            listOfMainCheckBoxes[2].setChecked(true)
+        } else {
+            listOfMainCheckBoxes[2].setChecked(false)
+        }
         showData()
+    }
+    // when checkedall is clicked it either checks or unches all type checkboxes
+    fun checkUncheckData(viev: View) {
+        var boxChecked = false
+        if (listOfMainCheckBoxes[2].isChecked) {
+            boxChecked = true
+        }
+        for (a in listOfCheckboxesTypesTechniques) {
+            a.setChecked(boxChecked)
+        }
+        showData()
+    }
+    // for checking/unchecking using techniqueTypesSelectAll, or changing it to make it workk
+    fun changeCheckboxes() {
+
     }
 
 }
