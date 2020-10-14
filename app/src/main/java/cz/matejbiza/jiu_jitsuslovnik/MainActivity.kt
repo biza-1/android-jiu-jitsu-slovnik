@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.Display
-import android.view.View
+import android.view.*
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -108,6 +107,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("wordID",IdOfClickedWord.toString())
             startActivity(intent)
         }
+
     }
     fun showData() {
         var editTextInput = findViewById<EditText>(R.id.textInput)
@@ -158,9 +158,44 @@ class MainActivity : AppCompatActivity() {
         }
         showData()
     }
-    // for checking/unchecking using techniqueTypesSelectAll, or changing it to make it workk
-    fun changeCheckboxes() {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here.
+        val id = item.getItemId()
+
+        if (id == R.id.about) {
+            Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
+            return true
+        }
+        else if (id == R.id.settings) {
+            Toast.makeText(this, "Item Two Clicked", Toast.LENGTH_LONG).show()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
 
     }
+    fun showPopup(v : View){
+        val popup = PopupMenu(this, v)
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.menu, popup.menu)
+        popup.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.about-> {
+
+                }
+                R.id.settings-> {
+
+                }
+            }
+            true
+        }
+        popup.show()
+    }
+
 
 }
