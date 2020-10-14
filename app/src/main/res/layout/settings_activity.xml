@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/MenuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greyColor"
+        android:orientation="vertical"
+        android:elevation="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            >
+
+
+
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:adjustViewBounds="true"
+                android:background="#00FFFFFF"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/back"
+                android:contentDescription="back button"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="15dp"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nastavení"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+
+            >
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Na nastavení se pracuje :)"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            >
+        </TextView>
+    </LinearLayout>
+</LinearLayout>

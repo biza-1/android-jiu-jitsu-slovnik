@@ -186,10 +186,12 @@ class MainActivity : AppCompatActivity() {
         popup.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.about-> {
-
+                    val intent = Intent(this, AboutActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.settings-> {
-
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
                 }
             }
             true
